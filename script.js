@@ -3,14 +3,14 @@ const letters = {
   sad: {
     title: "Untuk Kamu yang Bersedih",
     // GANTI link di bawah dengan link gambarmu sendiri
-    image: "assets/ANOTHER.jpg",
+    image: "assets/ME.jpg",
     text: "Dunia mungkin sedang berat hari ini, tapi inget, kamu jauh lebih kuat dari apa pun yang kamu hadapi. \n\nBersedih itu boleh, istirahat itu perlu. Peluk jauh! imaa listening to youuu :D",
   },
   happy: {
     title: "Yey! Kamu Senang!",
     // GANTI link di bawah dengan link gambarmu sendiri
-    image: "assets/ME.jpg",
-    text: "Tuhh kan, kalo lagi senang, senyumnya manis banget! hehe. \n\nSimpan energi positif ini baik-baik ya, semoga hari esok juga seindah hari ini. Keep shining kamuu! :p",
+    image: "assets/ANOTHER3.jpg",
+    text: "Tuhh kan, kamutuh kalo lagi senang, senyumnya manis banget! hehe. \n\nSimpan energi positif ini baik-baik ya, semoga hari esok juga seindah hari ini. Keep shining kamuu! :p",
   },
   miss: {
     title: "Obat Rindu",
