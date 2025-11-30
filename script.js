@@ -1,24 +1,38 @@
+// --- 1. DATA PESAN & GAMBAR (Update di sini) ---
 const letters = {
   sad: {
     title: "Untuk Kamu yang Bersedih",
+    // GANTI link di bawah dengan link gambarmu sendiri
+    image: "assets/ANOTHER.jpg",
     text: "Dunia mungkin sedang berat hari ini, tapi inget, kamu jauh lebih kuat dari apa pun yang kamu hadapi. \n\nBersedih itu boleh, istirahat itu perlu. Peluk jauh! imaa listening to youuu :D",
   },
   happy: {
     title: "Yey! Kamu Senang!",
+    // GANTI link di bawah dengan link gambarmu sendiri
+    image: "assets/ME.jpg",
     text: "Tuhh kan, kalo lagi senang, senyumnya manis banget! hehe. \n\nSimpan energi positif ini baik-baik ya, semoga hari esok juga seindah hari ini. Keep shining kamuu! :p",
   },
   miss: {
     title: "Obat Rindu",
+    // GANTI link di bawah dengan link gambarmu sendiri
+    image: "assets/ANOTHER2.jpg",
     text: "hmm? gapapa koo kalau kamu ngerasa rindu / kangen bisa dengan seseorang atau bahkan sesuatu. \n\nSemogaa hal itu jadi sumber positif dan membaik secepatnya yaa ❤️",
   },
 };
 
+// --- 2. LOGIKA MEMBUKA SURAT ---
 const modal = document.getElementById("modal");
 const content = document.getElementById("content");
 
 function openLetter(mood) {
   const data = letters[mood];
-  content.innerHTML = `<h2>${data.title}</h2><p>${data.text}</p>`;
+  // Di sini kita menambahkan tag <img> sebelum teks
+  // Kita beri class 'modal-image' agar bisa diatur di CSS
+  content.innerHTML = `
+    <h2>${data.title}</h2>
+    <img src="${data.image}" class="modal-image" alt="Foto Kenangan">
+    <p>${data.text}</p>
+  `;
   modal.classList.add("active");
 }
 
@@ -30,6 +44,7 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) closeLetter();
 });
 
+// --- 3. EFEK FIREFLIES & AUDIO (Tidak ada perubahan) ---
 function createFirefly() {
   const f = document.createElement("div");
   f.className = "firefly";
@@ -46,12 +61,10 @@ function createFirefly() {
 }
 setInterval(createFirefly, 400);
 
-// --- AUDIO CONTROL LOGIC ---
 const music = document.getElementById("bg-music");
 const musicBtn = document.getElementById("musicBtn");
 let isPlaying = false;
 
-// Fungsi Klik Tombol
 function toggleMusic() {
   if (isPlaying) {
     music.pause();
@@ -63,8 +76,6 @@ function toggleMusic() {
   isPlaying = !isPlaying;
 }
 
-// Fitur Auto-Play: Lagu otomatis main saat user klik layar pertama kali
-// (Ini wajib karena browser memblokir autoplay biasa)
 document.body.addEventListener(
   "click",
   function () {
@@ -81,4 +92,4 @@ document.body.addEventListener(
     }
   },
   { once: true }
-); // {once: true} artinya cuma jalan sekali aja pas awal
+);

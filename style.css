@@ -391,3 +391,18 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* --- Tambahan CSS untuk Gambar di dalam Modal --- */
+.modal-image {
+  width: 100%; /* Gambar akan memenuhi lebar kartu */
+  max-height: 250px; /* Batasi tingginya agar tidak terlalu panjang di HP */
+  object-fit: cover; /* Agar gambar tidak gepeng/terdistorsi */
+  border-radius: 12px; /* Membuat sudut gambar melengkung */
+  margin-bottom: 20px; /* Jarak antara gambar dan teks di bawahnya */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sedikit bayangan agar timbul */
+}
+
+/* Update sedikit pada .card h2 agar jaraknya pas dengan gambar */
+.card h2 {
+  margin-bottom: 15px; /* Jarak antara Judul dan Gambar */
+}
