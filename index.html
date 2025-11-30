@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Special Garden For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="bg-music" loop>
+      <source src="Music/Sufjan Stevens - Mystery of Love (From Call Me By Your Name Soundtrack).mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+      <span style="font-size: 20px">🎵</span>
+    </div>
+    <div class="header">
+      <h1>Kebun Rahasia</h1>
+      <p>
+        Juliana Gendis Pitalokha <br />
+        Sentuh bunganya yaa Sweetheart :D
+      </p>
+    </div>
+
+    <div class="polaroid-container">
+      <div class="polaroid" style="top: 15%; left: 5%; --r: -15deg; animation-delay: 0s">
+        <img src="assets/HER1.jpg" alt="Foto 1" />
+      </div>
+
+      <div class="polaroid" style="top: 10%; right: 5%; --r: 10deg; animation-delay: 2s">
+        <img src="assets/HER2.jpg" alt="Foto 2" />
+      </div>
+
+      <div class="polaroid" style="top: 45%; left: -5%; --r: 5deg; animation-delay: 1s">
+        <img src="assets/HER1.jpg" alt="Foto 3" />
+      </div>
+
+      <div class="polaroid" style="top: 40%; right: -2%; --r: -8deg; animation-delay: 3s">
+        <img src="assets/HER3.png" alt="Foto 4" />
+      </div>
+
+      <div class="polaroid" style="bottom: 10%; left: 30%; --r: 3deg; animation-delay: 4s; opacity: 0.15">
+        <img src="assets/HER3.png" alt="Foto 5" />
+      </div>
+    </div>
+
+    <div class="garden">
+      <div class="flower-wrapper" onclick="openLetter('sad')">
+        <div class="label">Lagi Sedih?</div>
+        <svg class="flower-head" viewBox="0 0 512 512">
+          <path fill="#e17055" d="M256 0C160 0 120 80 120 80s-40 40-40 100c0 88 71 160 176 160s176-72 176-160c0-60-40-100-40-100S352 0 256 0z" />
+          <path fill="#d63031" d="M256 40c-60 0-80 50-80 50s-20 20-20 60c0 40 40 90 100 90s100-50 100-90c0-40-20-60-20-60s-20-50-80-50z" />
+          <circle cx="256" cy="110" r="40" fill="#fab1a0" />
+        </svg>
+        <div class="stem-container">
+          <div class="leaf left"></div>
+          <div class="leaf right" style="top: 70%"></div>
+        </div>
+      </div>
+
+      <div class="flower-wrapper" onclick="openLetter('happy')">
+        <div class="label">Lagi Senang?</div>
+        <svg class="flower-head" viewBox="0 0 512 512">
+          <path fill="#feca57" d="M256 0l30 80 80-30-30 80 80 30-80 30 30 80-80-30-30 80-30-80-80 30 30-80-80-30 80-30-30-80 80 30z" />
+          <circle cx="256" cy="256" r="140" fill="#ff9f43" />
+          <circle cx="256" cy="256" r="100" fill="#5c3a21" />
+          <circle cx="240" cy="240" r="10" fill="#8c5e38" />
+          <circle cx="270" cy="260" r="8" fill="#8c5e38" />
+        </svg>
+        <div class="stem-container" style="background: #badc58">
+          <div class="leaf left" style="width: 40px"></div>
+          <div class="leaf right" style="width: 40px"></div>
+        </div>
+      </div>
+
+      <div class="flower-wrapper" onclick="openLetter('miss')">
+        <div class="label">Lagi Kangen?</div>
+        <svg class="flower-head" viewBox="0 0 512 512">
+          <path fill="#54a0ff" d="M120 360h272v-60c0-90-60-160-136-160s-136 70-136 160v60z" />
+          <path fill="#2e86de" d="M256 140c-40 0-80 40-80 100v120h160V240c0-60-40-100-80-100z" />
+        </svg>
+        <div class="stem-container">
+          <div class="leaf left" style="top: 80%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ground"></div>
+
+    <div class="overlay" id="modal">
+      <div class="card">
+        <div id="content"></div>
+        <button class="close-btn" onclick="closeLetter()">Simpan Kembali</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

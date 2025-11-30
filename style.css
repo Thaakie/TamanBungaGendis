@@ -1,0 +1,393 @@
+:root {
+  --bg-gradient: linear-gradient(to bottom, #020111, #191654, #43c6ac);
+  --stem-color: #6ab04c;
+  --leaf-color: #badc58;
+  --text-main: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-gradient);
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* --- BACKGROUND POLAROIDS (NEW FEATURE) --- */
+.polaroid-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Agar klik tembus ke belakang */
+  z-index: 2; /* Di atas background, di bawah bunga */
+  overflow: hidden;
+}
+
+.polaroid {
+  position: absolute;
+  background: #fff;
+  padding: 10px 10px 35px 10px; /* Padding bawah tebal ala polaroid */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0.25; /* Transparan agar tidak mengganggu */
+  transform: rotate(var(--r));
+  animation: floatPhoto 6s ease-in-out infinite alternate;
+  transition: opacity 0.3s;
+}
+
+/* Biar agak jelas dikit pas di hover (opsional) */
+/* .polaroid:hover { opacity: 0.8; z-index: 5; } */
+
+.polaroid img {
+  width: 120px; /* Ukuran foto */
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(20%); /* Efek vintage dikit */
+}
+
+@keyframes floatPhoto {
+  0% {
+    transform: translateY(0) rotate(var(--r));
+  }
+  100% {
+    transform: translateY(-20px) rotate(var(--r));
+  }
+}
+
+/* --- HEADER --- */
+.header {
+  position: absolute;
+  top: 10%;
+  text-align: center;
+  color: white;
+  z-index: 20; /* Lebih tinggi dari polaroid */
+  width: 100%;
+  padding: 0 20px;
+  animation: fadeInDown 2s ease-out;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.header h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+}
+.header p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* --- GARDEN AREA --- */
+.garden {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 30; /* Paling depan agar bisa diklik */
+}
+
+/* Ground Effect */
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to top, #000, transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- FLOWER COMPONENTS --- */
+.flower-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transition: transform 0.3s ease;
+  z-index: 30;
+  padding-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.flower-wrapper:hover {
+  transform: scale(1.05) translateY(-5px);
+  z-index: 40;
+}
+
+.flower-head {
+  width: 85px;
+  height: 85px;
+  z-index: 2;
+  transform-origin: bottom center;
+  animation: sway 4s infinite ease-in-out alternate;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.stem-container {
+  width: 6px;
+  height: 140px;
+  background: var(--stem-color);
+  border-radius: 10px;
+  position: relative;
+  margin-top: -5px;
+  z-index: 1;
+}
+
+.leaf {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  background: var(--leaf-color);
+  border-radius: 0 20px 0 20px;
+  box-shadow: inset 2px 2px rgba(255, 255, 255, 0.2);
+}
+.leaf.left {
+  left: -25px;
+  top: 40%;
+  transform: rotate(-20deg);
+}
+.leaf.right {
+  right: -25px;
+  top: 60%;
+  transform: rotate(20deg) scaleX(-1);
+}
+
+/* --- LABEL FIX --- */
+.label {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.flower-wrapper:hover .label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.label::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
+}
+
+/* --- MODAL --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.card {
+  background: #fffafa;
+  width: 85%;
+  max-width: 400px;
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+.overlay.active .card {
+  transform: scale(1);
+}
+.card h2 {
+  font-family: "Dancing Script", cursive;
+  color: #d63031;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.card p {
+  color: #555;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+.close-btn {
+  background: #ff7675;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 118, 117, 0.4);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes sway {
+  0% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #ffeaa7;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px #ffeaa7;
+  pointer-events: none;
+  opacity: 0;
+  animation: fly linear forwards;
+  z-index: 1;
+}
+
+/* --- RESPONSIVE --- */
+@media (min-width: 768px) {
+  .garden {
+    gap: 60px;
+  }
+  .flower-head {
+    width: 140px;
+    height: 140px;
+  }
+  .stem-container {
+    height: 200px;
+    width: 10px;
+  }
+  .header {
+    top: 15%;
+  }
+  .header h1 {
+    font-size: 3.5rem;
+  }
+  .leaf {
+    width: 40px;
+    height: 20px;
+  }
+  .leaf.left {
+    left: -35px;
+  }
+  .leaf.right {
+    right: -35px;
+  }
+  .label {
+    top: -45px;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+  }
+  .polaroid img {
+    width: 160px;
+    height: 200px;
+  } /* Foto lebih besar di laptop */
+}
+
+/* --- MUSIC BUTTON STYLE --- */
+.music-btn {
+  position: fixed; /* Agar tetap di pojok walaupun scroll */
+  top: 20px;
+  right: 20px;
+  z-index: 9999; /* Pastikan paling atas */
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  /* Efek Kaca Transparan */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-btn:active {
+  transform: scale(0.9);
+}
+
+/* Class ini ditambahkan lewat JS saat lagu main */
+.music-btn.playing {
+  animation: spin 3s linear infinite;
+  background: rgba(255, 215, 0, 0.3); /* Jadi kuning emas transparan */
+  border-color: #ffd700;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
