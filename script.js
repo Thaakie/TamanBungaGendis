@@ -1,7 +1,7 @@
 const letters = {
   sad: {
     title: "Untuk Kamu yang Bersedih",
-    text: "Dunia mungkin sedang berat hari ini, tapi ingat, kamu jauh lebih kuat dari apa pun yang kamu hadapi. \n\nBersedih itu boleh, istirahat itu perlu. Peluk jauh! imaa listening to youuu :D",
+    text: "Dunia mungkin sedang berat hari ini, tapi inget, kamu jauh lebih kuat dari apa pun yang kamu hadapi. \n\nBersedih itu boleh, istirahat itu perlu. Peluk jauh! imaa listening to youuu :D",
   },
   happy: {
     title: "Yey! Kamu Senang!",
@@ -9,7 +9,7 @@ const letters = {
   },
   miss: {
     title: "Obat Rindu",
-    text: "hmm? gapapa koo kalau ngerasa rindu / kangen bisa dengan seseorang atau bahkan sesuatu. \n\n Dan semogaa hal itu segera membaik secepatnya yaa ❤️",
+    text: "hmm? gapapa koo kalau kamu ngerasa rindu / kangen bisa dengan seseorang atau bahkan sesuatu. \n\nSemogaa hal itu jadi sumber positif dan membaik secepatnya yaa ❤️",
   },
 };
 
